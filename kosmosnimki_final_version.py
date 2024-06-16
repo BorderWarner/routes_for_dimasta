@@ -160,7 +160,7 @@ def main():
 
 
 def run_daily():
-    schedule.every().day.at("00:00").do(main)
+    schedule.every().day.at("10:00").do(main)
 
     while True:
         schedule.run_pending()
