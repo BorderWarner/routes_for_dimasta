@@ -3,6 +3,8 @@ from requests_oauthlib import OAuth2Session
 import requests
 from datetime import datetime, timedelta
 import os
+import schedule
+import time
 
 import cv2
 import numpy as np
@@ -157,5 +159,13 @@ def main():
             fetch_images(token, bbox, start_time, end_time)
 
 
+def run_daily():
+    schedule.every().day.at("00:00").do(main)
+
+    while True:
+        schedule.run_pending()
+        time.sleep(1)
+
+
 if __name__ == "__main__":
-    main()
+    run_daily()
